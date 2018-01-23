@@ -35,6 +35,8 @@ USER 1001
 ENTRYPOINT ["dumb-init", "/app/entrypoint.sh"]
 CMD [ "/usr/bin/maxscale", "--nodaemon", "--log=stdout" ]
 
+EXPOSE 6603 3306 3307
+
 ENV THREADS=2 \
     SERVICE_USER=maxscale \
     READ_WRITE_PORT=3307 \
