@@ -23,7 +23,7 @@ objects:
     ports:
     - name: web
       port: 8080
-      targetPort: http
+      targetPort: 8080
     selector:
       name: ${NAME}
 - apiVersion: v1
@@ -85,15 +85,6 @@ objects:
     replicas: 1
     selector:
       name: ${NAME}
-    strategy:
-      recreateParams:
-        pre:
-          execNewPod:
-            command:
-            - ./migrate-database.sh
-            containerName: cakephp-mysql-example
-          failurePolicy: Retry
-      type: Recreate
     template:
       metadata:
         labels:
@@ -102,14 +93,14 @@ objects:
       spec:
         containers:
         - name: maxscale
-          image: docker.io/srueg/maxscale:2.2.1
+          image: docker.io/appuio/maxscale-docker:2.2.1-beta-3
           env:
           - name: DB1_ADDRESS
-            value: 159.100.246.225
+            value: ${DB1_ADDRESS}
           - name: DB2_ADDRESS
-            value: 159.100.247.38
+            value: ${DB2_ADDRESS}
           - name: DB3_ADDRESS
-            value: 159.100.246.24
+            value: ${DB3_ADDRESS}
           - name: SERVICE_PWD
             valueFrom:
               secretKeyRef:
@@ -120,10 +111,19 @@ objects:
               secretKeyRef:
                 key: maxscale-monitor-pw
                 name: ${NAME}
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
         - name: cakephp-mysql-example
           env:
           - name: DATABASE_SERVICE_NAME
-            value: ${DATABASE_SERVICE_NAME}
+            value: mysql
+          - name: MYSQL_SERVICE_PORT
+            value: "3306"
+          - name: MYSQL_SERVICE_HOST
+            value: 127.0.0.1
           - name: DATABASE_ENGINE
             value: ${DATABASE_ENGINE}
           - name: DATABASE_NAME
@@ -163,8 +163,7 @@ objects:
             initialDelaySeconds: 30
             timeoutSeconds: 3
           ports:
-          - name: http
-            containerPort: 8080
+          - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /health.php
@@ -200,11 +199,6 @@ parameters:
   name: MEMORY_LIMIT
   required: true
   value: 512Mi
-- description: Maximum amount of memory the MySQL container can use.
-  displayName: Memory Limit (MySQL)
-  name: MEMORY_MYSQL_LIMIT
-  required: true
-  value: 512Mi
 - description: The URL of the repository with your application source code.
   displayName: Git Repository URL
   name: SOURCE_REPOSITORY_URL
@@ -228,10 +222,6 @@ parameters:
   from: '[a-zA-Z0-9]{40}'
   generate: expression
   name: GITHUB_WEBHOOK_SECRET
-- displayName: Database Service Name
-  name: DATABASE_SERVICE_NAME
-  required: true
-  value: mysql
 - description: 'Database engine: postgresql, mysql or sqlite (default).'
   displayName: Database Engine
   name: DATABASE_ENGINE
@@ -275,4 +265,10 @@ parameters:
 - name: MAXSCALE_SERVICE_PW
   required: true
 - name: MAXSCALE_MONITOR_PW
+  required: true
+- name: DB1_ADDRESS
+  required: true
+- name: DB2_ADDRESS
+  required: true
+- name: DB3_ADDRESS
   required: true
