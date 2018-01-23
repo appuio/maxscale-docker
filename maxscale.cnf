@@ -30,7 +30,7 @@ user=$SERVICE_USER
 [MasterOnly-Listener]
 address=127.0.0.1
 port=$MASTER_ONLY_PORT
-protocol=mariadbclient
+protocol=MariaDBClient
 service=MasterOnly-Service
 type=listener
 
@@ -58,19 +58,19 @@ port=$CLI_PORT
 type=server
 address=$DB1_ADDRESS
 port=$DB1_PORT
-protocol=mariadbbackend
+protocol=MariaDBBackend
 priority=$DB1_PRIO
 
 [db2]
 type=server
 address=$DB2_ADDRESS
 port=$DB2_PORT
-protocol=mariadbbackend
+protocol=MariaDBBackend
 priority=$DB2_PRIO
 
 [db3]
 type=server
 address=$DB3_ADDRESS
 port=$DB3_PORT
-protocol=mariadbbackend
+protocol=MariaDBBackend
 priority=$DB3_PRIO
