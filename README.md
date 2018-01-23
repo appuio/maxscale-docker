@@ -1,13 +1,13 @@
 # MaxScale in Docker
-Dockerized MariaDB MaxScale
+Dockerized MariaDB MaxScale with default config for a three node galera cluster. Various settings can be configured with environemnt variables.
 
 ## Run
-You need to specify the addresses for DB1-DB3 as well as passwords for service and monitoring users:
+You need to specify the addresses for DB1 through DB3 as well as passwords for service and monitoring users:
 ```
 docker run -e DB1_ADDRESS=127.0.0.1 -e DB2_ADDRESS=127.0.0.2 -e DB3_ADDRESS=127.0.0.3 -e SERVICE_PWD="SuperSecret1234" -e MONITOR_PWD="EvenMoreSecret" maxscale:2.1.1
 ```
 ## Configuration
-Config is done through env vars. Following env vars are available
+Config is done through env vars:
 
 | Name                | Default value       | Description                         |
 |---------------------|---------------------|-------------------------------------|
@@ -31,5 +31,15 @@ Config is done through env vars. Following env vars are available
 | DB3_PORT            | 3306                | Port for backend DB3                |
 | DB3_PRIO            | 3                   | Priority for bakcend DB3            |
 
-To use a complete custom config, mount a config file:
-```docker run -v /home/customfile.cnf:/etc/maxscale.cnf maxscale:2.1.1```
+### Custom configuration
+To use a complete custom config, mount your own config file to `/etc/maxscale.cnf`:
+
+```
+docker run -v /home/customfile.cnf:/etc/maxscale.cnf maxscale:2.1.1
+```
+
+## Build
+```
+docker build --rm -t registry.vshn.net/vshn-docker/maxscale:2.2.1 .
+docker push registry.vshn.net/vshn-docker/maxscale:2.2.1
+```
