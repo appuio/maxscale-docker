@@ -19,8 +19,6 @@ Config is done through env vars:
 | MASTER_ONLY_PORT    | 3306                | Listen port for master only service |
 | MONITOR_USER        | maxscale            | Monitoring user                     |
 | MONITOR_PWD         | `None`              | Password for the monitoring user    |
-| CLI_ADDR            | localhost           | Listen address for the CLI          |
-| CLI_PORT            | 6603                | Listen port for the CLI             |
 | DB1_ADDRESS         | `None`              | Address for backend DB1             |
 | DB1_PORT            | 3306                | Port for backend DB1                |
 | DB1_PRIO            | 1                   | Priority for backend DB1            |

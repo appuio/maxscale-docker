@@ -51,8 +51,7 @@ router=cli
 type=listener
 service=CLI
 protocol=maxscaled
-address=$CLI_ADDR
-port=$CLI_PORT
+socket=default
 
 [db1]
 type=server
