@@ -43,8 +43,4 @@ docker push registry.vshn.net/vshn-docker/maxscale:2.2.1
 ```
 
 ## OpenShift
-To run this image as a sidecar container in OpenShift, see the example in the folder `openshift`. The template needs the parameters `MAXSCALE_SERVICE_PW`, `MAXSCALE_MONITOR_PW`, `DB1_ADDRESS`, `DB2_ADDRESS`, `DB3_ADDRESS` and `DATABASE_NAME` to connect to the galera cluster.
-
-### maxadmin
-To run `maxadmin` in OpenShift, connect to the sidecar container running MaxScale:
-```oc rsh <POD-NAME>```
+To run this image as a sidecar container in OpenShift, see the [example](openshift/template.yaml) in the folder `openshift`. The template needs the parameters `MAXSCALE_SERVICE_PW`, `MAXSCALE_MONITOR_PW`, `DB1_ADDRESS`, `DB2_ADDRESS`, `DB3_ADDRESS` and `DATABASE_NAME` to connect to the galera cluster.
