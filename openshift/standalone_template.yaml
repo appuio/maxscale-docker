@@ -42,7 +42,7 @@ objects:
       spec:
         containers:
         - name: maxscale
-          image: docker.io/appuio/maxscale-docker:2.2.1-beta-3
+          image: docker.io/appuio/maxscale-docker:2.2.1-beta-4
           env:
           - name: MASTER_ONLY_LISTEN_ADDRESS
             value: 0.0.0.0

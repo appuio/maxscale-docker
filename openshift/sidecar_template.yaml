@@ -93,7 +93,7 @@ objects:
       spec:
         containers:
         - name: maxscale
-          image: docker.io/appuio/maxscale-docker:2.2.1-beta-3
+          image: docker.io/appuio/maxscale-docker:2.2.1-beta-4
           env:
           - name: DB1_ADDRESS
             value: ${DB1_ADDRESS}
