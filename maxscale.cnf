@@ -12,7 +12,7 @@ type=service
 user=$SERVICE_USER
 
 [ReadWriteSplit-Listener]
-address=127.0.0.1
+address=$READ_WRITE_LISTEN_ADDRESS
 port=$READ_WRITE_PORT
 protocol=$READ_WRITE_PROTOCOL
 service=ReadWriteSplit-Service
@@ -28,9 +28,9 @@ type=service
 user=$SERVICE_USER
 
 [MasterOnly-Listener]
-address=127.0.0.1
+address=$MASTER_ONLY_LISTEN_ADDRESS
 port=$MASTER_ONLY_PORT
-protocol=MariaDBClient
+protocol=$MASTER_ONLY_PROTOCOL
 service=MasterOnly-Service
 type=listener
 
