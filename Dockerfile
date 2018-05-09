@@ -18,7 +18,7 @@ USER 1001
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["maxscale", "--nodaemon", "--log=stdout"]
 
-EXPOSE 6603 3306 3307
+EXPOSE 6603 3306 3307 8003 9003
 
 ENV THREADS=2 \
     SERVICE_USER=maxscale \
