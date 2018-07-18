@@ -43,6 +43,18 @@ use_priority=true
 user=$MONITOR_USER
 disable_master_failback=false
 
+[MaxInfo]
+type=service
+router=maxinfo
+user=monitor
+passwd=$SERVICE_PWD
+
+[MaxInfo-JSON-Listener]
+type=listener
+service=MaxInfo
+protocol=HTTPD
+port=8003
+
 [CLI]
 type=service
 router=cli
