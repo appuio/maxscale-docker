@@ -1,6 +1,6 @@
 FROM centos:7
 
-ENV MAXSCALE_VERSION=2.2.5
+ENV MAXSCALE_VERSION=2.2.11
 
 COPY entrypoint.sh /entrypoint.sh
 
