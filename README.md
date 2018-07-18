@@ -22,6 +22,8 @@ Config is done through env vars:
 | `MASTER_ONLY_PROTOCOL`        | `MariaDBClient`     | Protocol for master onyl service        |
 | `MONITOR_USER`                | `maxscale`          | Monitoring user                         |
 | `MONITOR_PWD`                 |                     | Password for the monitoring user        |
+| `AUTH_CONNECT_TIMEOUT`        | `10`                | Value for [`auth_connect_timeout`][]    |
+| `AUTH_READ_TIMEOUT`           | `10`                | Value for [`auth_read_timeout`][]       |
 | `DB1_ADDRESS`                 |                     | Address for backend DB1                 |
 | `DB1_PORT`                    | `3306`              | Port for backend DB1                    |
 | `DB1_PRIO`                    | `1`                 | Priority for backend DB1                |
@@ -46,4 +48,8 @@ docker push registry.vshn.net/vshn-docker/maxscale:2.2.1
 ```
 
 ## OpenShift
-To run this image as a sidecar container in OpenShift, see the [sidecar_template.yaml](openshift/sidecar_template.yaml) in the folder `openshift`. The [standalone_template.yaml](openshift/standalone_template.yaml) can be used to run a standalone instance of MaxScale. The templates need the parameters `MAXSCALE_SERVICE_PW`, `MAXSCALE_MONITOR_PW`, `DB1_ADDRESS`, `DB2_ADDRESS`, `DB3_ADDRESS` and `DATABASE_NAME` to connect to the galera cluster. 
+To run this image as a sidecar container in OpenShift, see the [sidecar_template.yaml](openshift/sidecar_template.yaml) in the folder `openshift`. The [standalone_template.yaml](openshift/standalone_template.yaml) can be used to run a standalone instance of MaxScale. The templates need the parameters `MAXSCALE_SERVICE_PW`, `MAXSCALE_MONITOR_PW`, `DB1_ADDRESS`, `DB2_ADDRESS`, `DB3_ADDRESS` and `DATABASE_NAME` to connect to the galera cluster.
+
+
+[auth_connect_timeout]: https://github.com/mariadb-corporation/MaxScale/blob/develop/Documentation/Getting-Started/Configuration-Guide.md#auth_connect_timeout
+[auth_read_timeout]: https://github.com/mariadb-corporation/MaxScale/blob/develop/Documentation/Getting-Started/Configuration-Guide.md#auth_read_timeout
