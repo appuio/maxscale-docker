@@ -2,6 +2,8 @@
 substitute_variables=true
 syslog=0
 threads=$THREADS
+auth_connect_timeout=$AUTH_CONNECT_TIMEOUT
+auth_read_timeout=$AUTH_READ_TIMEOUT
 
 [ReadWriteSplit-Service]
 localhost_match_wildcard_host=1
