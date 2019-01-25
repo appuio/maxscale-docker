@@ -1,6 +1,6 @@
-FROM centos:7
+FROM docker.io/library/centos:7
 
-ENV MAXSCALE_VERSION=2.2.15
+ENV MAXSCALE_VERSION=2.2.19
 
 COPY entrypoint.sh /entrypoint.sh
 

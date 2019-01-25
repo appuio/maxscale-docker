@@ -1,4 +1,4 @@
-[maxscale]
+[MaxScale]
 substitute_variables=true
 syslog=0
 threads=$THREADS

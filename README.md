@@ -1,4 +1,7 @@
 # MaxScale in Docker
+
+[![Docker Build Status](https://img.shields.io/docker/build/appuio/oc.svg)](https://hub.docker.com/r/appuio/oc/)
+
 Dockerized MariaDB MaxScale with default config for a three node galera cluster. Various settings can be configured with environemnt variables.
 
 ## Run
@@ -53,3 +56,8 @@ To run this image as a sidecar container in OpenShift, see the [sidecar_template
 
 [auth_connect_timeout]: https://github.com/mariadb-corporation/MaxScale/blob/develop/Documentation/Getting-Started/Configuration-Guide.md#auth_connect_timeout
 [auth_read_timeout]: https://github.com/mariadb-corporation/MaxScale/blob/develop/Documentation/Getting-Started/Configuration-Guide.md#auth_read_timeout
+
+
+> [APPUiO](https://appuio.ch) -
+> GitHub [@appuio](https://github.com/appuio) -
+> Twitter [@appuio](https://twitter.com/appuio)
