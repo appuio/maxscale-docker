@@ -46,18 +46,9 @@ docker run -v /home/customfile.cnf:/etc/maxscale.cnf maxscale:2.1.1
 
 ## Build
 ```
-docker build --rm -t registry.vshn.net/vshn-docker/maxscale:2.2.1 .
-docker push registry.vshn.net/vshn-docker/maxscale:2.2.1
+docker build --rm -t docker.pkg.github.com/kheekdotcom/maxscale-docker/maxscale:latest .
+docker push docker.pkg.github.com/kheekdotcom/maxscale-docker/maxscale:latest
 ```
-
-## OpenShift
-To run this image as a sidecar container in OpenShift, see the [sidecar_template.yaml](openshift/sidecar_template.yaml) in the folder `openshift`. The [standalone_template.yaml](openshift/standalone_template.yaml) can be used to run a standalone instance of MaxScale. The templates need the parameters `MAXSCALE_SERVICE_PW`, `MAXSCALE_MONITOR_PW`, `DB1_ADDRESS`, `DB2_ADDRESS`, `DB3_ADDRESS` and `DATABASE_NAME` to connect to the galera cluster.
-
 
 [auth_connect_timeout]: https://github.com/mariadb-corporation/MaxScale/blob/develop/Documentation/Getting-Started/Configuration-Guide.md#auth_connect_timeout
 [auth_read_timeout]: https://github.com/mariadb-corporation/MaxScale/blob/develop/Documentation/Getting-Started/Configuration-Guide.md#auth_read_timeout
-
-
-> [APPUiO](https://appuio.ch) -
-> GitHub [@appuio](https://github.com/appuio) -
-> Twitter [@appuio](https://twitter.com/appuio)
