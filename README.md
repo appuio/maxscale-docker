@@ -1,6 +1,6 @@
 # MaxScale in Docker
 
-[![Docker Build Status](https://img.shields.io/docker/build/appuio/oc.svg)](https://hub.docker.com/r/appuio/oc/)
+[![Docker Build Status](https://img.shields.io/docker/build/appuio/maxscale-docker.svg)](https://hub.docker.com/r/appuio/maxscale-docker/)
 
 Dockerized MariaDB MaxScale with default config for a three node galera cluster. Various settings can be configured with environemnt variables.
 
