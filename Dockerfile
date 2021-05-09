@@ -1,4 +1,4 @@
-FROM docker.io/library/centos:7@sha256:c2f1d5a9c0a81350fa0ad7e1eee99e379d75fe53823d44b5469eb2eb6092c941
+FROM docker.io/library/centos:8@sha256:5528e8b1b1719d34604c87e11dcd1c0a20bedf46e83b5632cdeac91b8c04efc1
 
 ENV MAXSCALE_VERSION=2.2.20
 
