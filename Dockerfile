@@ -1,15 +1,16 @@
-FROM docker.io/library/centos:7@sha256:c2f1d5a9c0a81350fa0ad7e1eee99e379d75fe53823d44b5469eb2eb6092c941
+FROM docker.io/library/centos:8
 
-ENV MAXSCALE_VERSION=2.2.20
+ENV MAXSCALE_VERSION=6.1.3
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN yum install -y https://downloads.mariadb.com/MaxScale/${MAXSCALE_VERSION}/centos/7/x86_64/maxscale-${MAXSCALE_VERSION}-1.centos.7.x86_64.rpm && \
+RUN yum install -y https://downloads.mariadb.com/MaxScale/${MAXSCALE_VERSION}/centos/8/x86_64/maxscale-${MAXSCALE_VERSION}-1.rhel.8.x86_64.rpm && \
     yum clean all -y && \
     chmod g=u /etc/passwd && \
     chmod +x entrypoint.sh && \
-    chmod -R g=u /var/{lib,run}/maxscale && \
-    chgrp -R 0 /var/{lib,run}/maxscale
+    chmod -R g=u /var/{lib,run,log,cache}/maxscale && \
+    chgrp -R 0 /var/{lib,run,log,cache}/maxscale
+
 
 COPY maxscale.cnf /etc/maxscale.cnf
 
@@ -20,8 +21,8 @@ CMD ["maxscale", "--nodaemon", "--log=stdout"]
 
 EXPOSE 6603 3306 3307 8003
 
-ENV THREADS=2 \
-    SERVICE_USER=maxscale \
+ENV SERVICE_USER=maxscale \
+    SERVICE_PWD=asdf1234 \
     READ_WRITE_LISTEN_ADDRESS=127.0.0.1 \
     READ_WRITE_PORT=3307 \
     READ_WRITE_PROTOCOL=MariaDBClient \
@@ -29,8 +30,12 @@ ENV THREADS=2 \
     MASTER_ONLY_PORT=3306 \
     MASTER_ONLY_PROTOCOL=MariaDBClient \
     MONITOR_USER=maxscale \
-    AUTH_CONNECT_TIMEOUT=10 \
-    AUTH_READ_TIMEOUT=10 \
+    MONITOR_PWD=asdf123 \
+    AUTH_CONNECT_TIMEOUT=10s \
+    AUTH_READ_TIMEOUT=10s \
+    DB1_ADDRESS=db1.example.org \
+    DB2_ADDRESS=db2.example.org \
+    DB3_ADDRESS=db3.example.org \
     DB1_PORT=3306 \
     DB2_PORT=3306 \
     DB3_PORT=3306 \
