@@ -1,20 +1,17 @@
 # MaxScale in Docker
 
-[![Docker Build Status](https://img.shields.io/docker/build/appuio/maxscale-docker.svg)](https://hub.docker.com/r/appuio/maxscale-docker/)
-
 Dockerized MariaDB MaxScale with default config for a three node galera cluster. Various settings can be configured with environemnt variables.
 
 ## Run
 You need to specify the addresses for DB1 through DB3 as well as passwords for service and monitoring users:
 ```
-docker run -e DB1_ADDRESS=127.0.0.1 -e DB2_ADDRESS=127.0.0.2 -e DB3_ADDRESS=127.0.0.3 -e SERVICE_PWD="SuperSecret1234" -e MONITOR_PWD="EvenMoreSecret" maxscale:2.1.1
+docker run -e DB1_ADDRESS=127.0.0.1 -e DB2_ADDRESS=127.0.0.2 -e DB3_ADDRESS=127.0.0.3 -e SERVICE_PWD="SuperSecret1234" -e MONITOR_PWD="EvenMoreSecret" quay.io/maxscale:6.1.3
 ```
 ## Configuration
 Config is done through env vars:
 
 | Name                          | Default value       | Description                             |
 |-------------------------------|---------------------|-----------------------------------------|
-| `THREADS`                     | `2`                 | Thread count to run MaxScale            |
 | `SERVICE_USER`                | `maxscale`          | Service user                            |
 | `SERVICE_PWD`                 |                     | Password for the service user           |
 | `READ_WRITE_LISTEN_ADDRESS`   | `127.0.0.1`         | Listen address for read/write service   |
@@ -25,15 +22,13 @@ Config is done through env vars:
 | `MASTER_ONLY_PROTOCOL`        | `MariaDBClient`     | Protocol for master onyl service        |
 | `MONITOR_USER`                | `maxscale`          | Monitoring user                         |
 | `MONITOR_PWD`                 |                     | Password for the monitoring user        |
-| `AUTH_CONNECT_TIMEOUT`        | `10`                | Value for [`auth_connect_timeout`][]    |
-| `AUTH_READ_TIMEOUT`           | `10`                | Value for [`auth_read_timeout`][]       |
-| `DB1_ADDRESS`                 |                     | Address for backend DB1                 |
+| `DB1_ADDRESS`                 | `db1.example.org`   | Address for backend DB1                 |
 | `DB1_PORT`                    | `3306`              | Port for backend DB1                    |
 | `DB1_PRIO`                    | `1`                 | Priority for backend DB1                |
-| `DB2_ADDRESS`                 |                     | Address for backend DB2                 |
+| `DB2_ADDRESS`                 | `db2.example.org`   | Address for backend DB2                 |
 | `DB2_PORT`                    | `3306`              | Port for backend DB2                    |
 | `DB2_PRIO`                    | `2`                 | Priority for backend DB2                |
-| `DB3_ADDRESS`                 |                     | Address for backend DB3                 |
+| `DB3_ADDRESS`                 | `db3.example.org`   | Address for backend DB3                 |
 | `DB3_PORT`                    | `3306`              | Port for backend DB3                    |
 | `DB3_PRIO`                    | `3`                 | Priority for bakcend DB3                |
 
@@ -41,13 +36,15 @@ Config is done through env vars:
 To use a complete custom config, mount your own config file to `/etc/maxscale.cnf`:
 
 ```
-docker run -v /home/customfile.cnf:/etc/maxscale.cnf maxscale:2.1.1
+docker run -v /home/customfile.cnf:/etc/maxscale.cnf maxscale:6.1.3
 ```
 
-## Build
+### Build
+
+A plain build will use the defaults from the table above:
+
 ```
-docker build --rm -t registry.vshn.net/vshn-docker/maxscale:2.2.1 .
-docker push registry.vshn.net/vshn-docker/maxscale:2.2.1
+docker build .
 ```
 
 ## OpenShift
