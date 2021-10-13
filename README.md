@@ -1,13 +1,11 @@
 # MaxScale in Docker
 
-[![Docker Build Status](https://img.shields.io/docker/build/appuio/maxscale-docker.svg)](https://hub.docker.com/r/appuio/maxscale-docker/)
-
 Dockerized MariaDB MaxScale with default config for a three node galera cluster. Various settings can be configured with environemnt variables.
 
 ## Run
 You need to specify the addresses for DB1 through DB3 as well as passwords for service and monitoring users:
 ```
-docker run -e DB1_ADDRESS=127.0.0.1 -e DB2_ADDRESS=127.0.0.2 -e DB3_ADDRESS=127.0.0.3 -e SERVICE_PWD="SuperSecret1234" -e MONITOR_PWD="EvenMoreSecret" maxscale:2.1.1
+docker run -e DB1_ADDRESS=127.0.0.1 -e DB2_ADDRESS=127.0.0.2 -e DB3_ADDRESS=127.0.0.3 -e SERVICE_PWD="SuperSecret1234" -e MONITOR_PWD="EvenMoreSecret" quay.io/maxscale:6.1.3
 ```
 ## Configuration
 Config is done through env vars:
@@ -24,8 +22,6 @@ Config is done through env vars:
 | `MASTER_ONLY_PROTOCOL`        | `MariaDBClient`     | Protocol for master onyl service        |
 | `MONITOR_USER`                | `maxscale`          | Monitoring user                         |
 | `MONITOR_PWD`                 |                     | Password for the monitoring user        |
-| `AUTH_CONNECT_TIMEOUT`        | `10s`               | Value for [`auth_connect_timeout`][]    |
-| `AUTH_READ_TIMEOUT`           | `10s`               | Value for [`auth_read_timeout`][]       |
 | `DB1_ADDRESS`                 | `db1.example.org`   | Address for backend DB1                 |
 | `DB1_PORT`                    | `3306`              | Port for backend DB1                    |
 | `DB1_PRIO`                    | `1`                 | Priority for backend DB1                |
