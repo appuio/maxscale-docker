@@ -2,7 +2,8 @@ name: Build image and push to GHCR
 
 on:
   push:
-    branches: ['master']
+    tags:
+      - "*.*.*"
 
 env:
   REGISTRY: ghcr.io
