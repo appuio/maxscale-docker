@@ -1,10 +1,8 @@
-FROM docker.io/library/centos:8@sha256:a27fd8080b517143cbbbab9dfb7c8571c40d67d534bbdee55bd6c473f432b177
-
-ENV MAXSCALE_VERSION=6.1.3
+FROM docker.io/mariadb/maxscale:6.1.3
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN yum install -y https://downloads.mariadb.com/MaxScale/${MAXSCALE_VERSION}/centos/8/x86_64/maxscale-${MAXSCALE_VERSION}-1.rhel.8.x86_64.rpm && \
+RUN yum remove -y rsyslog monit && \
     yum clean all -y && \
     chmod g=u /etc/passwd && \
     chmod +x entrypoint.sh && \
@@ -14,7 +12,7 @@ RUN yum install -y https://downloads.mariadb.com/MaxScale/${MAXSCALE_VERSION}/ce
 
 COPY maxscale.cnf /etc/maxscale.cnf
 
-USER 1001
+USER 998
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["maxscale", "--nodaemon", "--log=stdout"]
