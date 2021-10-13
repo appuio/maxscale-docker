@@ -39,10 +39,12 @@ To use a complete custom config, mount your own config file to `/etc/maxscale.cn
 docker run -v /home/customfile.cnf:/etc/maxscale.cnf maxscale:6.1.3
 ```
 
-## Build
+### Build
+
+A plain build will use the defaults from the table above:
+
 ```
-docker build --rm -t registry.vshn.net/vshn-docker/maxscale:6.1.3 .
-docker push registry.vshn.net/vshn-docker/maxscale:6.1.3
+docker build .
 ```
 
 ## OpenShift
