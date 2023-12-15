@@ -1,4 +1,4 @@
-FROM docker.io/mariadb/maxscale:6.4.6
+FROM docker.io/mariadb/maxscale:23.08.4
 
 COPY entrypoint.sh /entrypoint.sh
 
